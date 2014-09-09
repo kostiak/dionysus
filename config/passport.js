@@ -52,7 +52,8 @@ module.exports = function (passport) {
 
                     // check to see if theres already a user with that email
                     if (user) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        console.log('user already exists');
+                        return done(null, false); //TODO add notification to angular
                     } else {
 
                         // if there is no user with that email

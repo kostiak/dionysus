@@ -15,13 +15,19 @@ module.exports = function(app, passport) {
             res.json(req.user);
     });
 
+    app.post('/api/register',
+        passport.authenticate('local-signup'),
+        function (req, res) {
+            res.json(req.user);
+    });
+
     app.get('/api/user', function(req, res){
         res.json(req.user);
     });
 
     app.get('/api/logout', function(req, res) {
         req.logout();
-        res.send('');
+        res.end();
     });
 
     // process the login form
