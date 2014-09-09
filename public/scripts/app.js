@@ -5,6 +5,7 @@ angular.module('scotchAuthApp.services', []);
 
 var app = angular.module('scotchAuthApp', [
     'ngRoute',
+    'ui.gravatar',
     'scotchAuthApp.controllers',
     'scotchAuthApp.directives',
     'scotchAuthApp.filters',

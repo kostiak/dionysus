@@ -30,7 +30,6 @@ app.use(bodyParser()); // get information from html forms
 app.use(session({ secret: 'MjJlZTE3MjMyMTAyYjUyNjI4NzEwODgx' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-//app.use(isLoggedIn);
 app.use(express.static(__dirname + '/public'));
 
 
@@ -41,15 +40,3 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
-
-/*
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    //console.log(req.isAuthenticated());
-    //if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    //res.redirect('/');
-}
-*/

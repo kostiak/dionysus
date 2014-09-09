@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="scotchAuthApp">
+<html lang="en" ng-app="scotchAuthApp" ng-controller="AppCtrl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +12,14 @@
 <nav>
     <a id="logo" href="#/">Scotch-Auth</a>
     <ul>
-        <li><a href="#/view1">view1</a></li>
-        <li><a href="#/login">login</a></li>
-        <li><a href="#/register">register</a></li>
-        <li><a href="#/profile">profile</a></li>
+        <li ng-hide="loggedIn"><a href="#/login">login</a> /</li>
+        <li ng-hide="loggedIn"><a href="#/register">register</a></li>
+        <li ng-show="loggedIn">
+            <a class="profile" href="#/profile">
+                <img class="gravatar" gravatar-src="user.email" gravatar-size="30">
+                <span>{{ user.email }}</span>
+            </a>
+        </li>
     </ul>
 </nav>
 
@@ -25,12 +29,15 @@
 <div>scotch-auth app: v<span app-version></span></div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-gravatar/build/md5.js"></script>
+<script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
 
 <!--grunt livereload script -->
 <script src="//localhost:35729/livereload.js"></script>
 <!--                        -->
 
 <script src="scripts/app.js"></script>
+<script src="scripts/controllers/app.js"></script>
 <script src="scripts/controllers/view1.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/register.js"></script>

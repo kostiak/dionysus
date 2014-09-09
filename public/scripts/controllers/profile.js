@@ -1,5 +1,17 @@
 var module = angular.module('scotchAuthApp.controllers');
 
-module.controller('ProfileCtrl', ['$scope', '$http', function ($scope, $http) {
+module.controller('ProfileCtrl', ['$scope', '$location', 'User', function ($scope, $location, User) {
+    if(!$scope.loggedIn) {
+        $location.path('/login');
+    }
 
+    User.get(function (data) {
+        $scope.user = data;
+    });
+
+    $scope.logout = function () {
+        User.logout(function () {
+            $location.path('/');
+        });
+    };
 }]);

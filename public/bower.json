@@ -8,6 +8,7 @@
     "angular": "~1.2.23",
     "angular-route": "~1.2.23",
     "angular-mocks": "~1.2.23",
-    "normalize.css": "~3.0.1"
+    "normalize.css": "~3.0.1",
+    "angular-gravatar": "~0.2.1"
   }
 }
