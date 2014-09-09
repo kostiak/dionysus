@@ -9,6 +9,16 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
 
+    app.post('/api/login',
+        passport.authenticate('local-login'),
+        function (req, res) {
+            res.json(req.user);
+    });
+
+    app.get('/api/user', function(req, res){
+        res.json(req.user);
+    });
+
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
@@ -43,12 +53,8 @@ module.exports = function(app, passport) {
     });
 };
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+/*
+function middle(req, res, next){
+    return next();
 }
+*/

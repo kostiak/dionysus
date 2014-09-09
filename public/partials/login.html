@@ -5,5 +5,9 @@
     <label for="password">Password: </label>
     <input type="password" id="password" ng-model="formData.password"/>
 
-    <input type="submit" value="Login" ng-click="submit()"/>
+    <input type="submit" value="Login" ng-click="login()"/>
+    <br />
+    <br/>
+    <span ng-show="data.email">Logged in</span> <br/>
+
 </form>
