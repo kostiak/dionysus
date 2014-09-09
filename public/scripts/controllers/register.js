@@ -1,4 +1,4 @@
-var module = angular.module('scotchAuthApp.controllers');
+var module = angular.module('dionysusApp.controllers');
 
 module.controller('RegisterCtrl', ['$scope', '$location', 'User', function ($scope, $location, User) {
     $scope.formData = {};

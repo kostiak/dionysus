@@ -1,15 +1,15 @@
-angular.module('scotchAuthApp.controllers', []);
-angular.module('scotchAuthApp.directives', []);
-angular.module('scotchAuthApp.filters', []);
-angular.module('scotchAuthApp.services', []);
+angular.module('dionysusApp.controllers', []);
+angular.module('dionysusApp.directives', []);
+angular.module('dionysusApp.filters', []);
+angular.module('dionysusApp.services', []);
 
-var app = angular.module('scotchAuthApp', [
+var app = angular.module('dionysusApp', [
     'ngRoute',
     'ui.gravatar',
-    'scotchAuthApp.controllers',
-    'scotchAuthApp.directives',
-    'scotchAuthApp.filters',
-    'scotchAuthApp.services'
+    'dionysusApp.controllers',
+    'dionysusApp.directives',
+    'dionysusApp.filters',
+    'dionysusApp.services'
 ]);
 
 

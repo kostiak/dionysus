@@ -1,4 +1,4 @@
-var module = angular.module('scotchAuthApp.filters');
+var module = angular.module('dionysusApp.filters');
 
 module.filter('reverse', function () {
     return function (text) {

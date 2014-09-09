@@ -3,6 +3,6 @@
  */
 module.exports = {
 
-    'url' : 'mongodb://localhost/scotch-auth'
+    'url' : 'mongodb://localhost/dionysus'
 
 };

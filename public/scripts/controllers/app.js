@@ -1,4 +1,4 @@
-var module = angular.module('scotchAuthApp.controllers');
+var module = angular.module('dionysusApp.controllers');
 
 module.controller('AppCtrl', ['$scope', 'User', function ($scope, User) {
 

@@ -1,4 +1,4 @@
-var module = angular.module('scotchAuthApp.services');
+var module = angular.module('dionysusApp.services');
 
 module.factory('User', ['$http', '$rootScope', function ($http, $rootScope) {
 
