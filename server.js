@@ -18,10 +18,6 @@ var configDB = require('./config/database.js');
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
-// injecting livereload to work with the grunt watch
-app.use(require('connect-livereload')({
-    port: 35729
-}));
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -37,6 +33,11 @@ app.use(session({ secret: 'MjJlZTE3MjMyMTAyYjUyNjI4NzEwODgx' })); // session sec
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+// injecting livereload to work with the grunt watch
+app.use(require('connect-livereload')({
+    port: 35729
+}));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
