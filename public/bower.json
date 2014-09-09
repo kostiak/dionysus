@@ -1,0 +1,13 @@
+{
+  "name": "scotch-auth",
+  "version": "0.0.1",
+  "author": "Kostia Kaploon <kkaploon@gmail.com>",
+  "description": "simple todo app with user authentication",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.23",
+    "angular-route": "~1.2.23",
+    "angular-mocks": "~1.2.23",
+    "normalize.css": "~3.0.1"
+  }
+}

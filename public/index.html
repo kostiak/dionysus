@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="scotchAuthApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scotch-Auth App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/normalize.css/normalize.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+<nav>
+    <a id="logo" href="#/">Scotch-Auth</a>
+    <ul>
+        <li><a href="#/view1">view1</a></li>
+        <li><a href="#/login">login</a></li>
+    </ul>
+</nav>
+
+<div class="main" ng-view></div>
+
+
+<div>scotch-auth app: v<span app-version></span></div>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<!--grunt livereload script -->
+<script src="//localhost:35729/livereload.js"></script>
+<!--                        -->
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/view1.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/directives/appVersion.js"></script>
+<script src="scripts/filters/reverse.js"></script>
+<script src="scripts/services/version.js"></script>
+
+</body>
+</html>

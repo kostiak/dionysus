@@ -2,7 +2,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            files: ['gruntfile.js', 'server.js', 'app/*.js', 'app/**/*.js', 'config/*.js']
+            files: ['gruntfile.js', 'server.js', 'app/*.js', 'app/**/*.js', 'config/*.js', 'public/scripts/*.js', 'public/scripts/**/*.js']
         },
         watch: {
             js: {
@@ -12,8 +12,14 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            ejs: {
-                files: ['views/*.ejs'],
+            html: {
+                files: ['public/index.html', 'public/partials/*.html'],
+                options: {
+                    livereload: true
+                }
+            },
+            css: {
+                files: ['public/styles/*.css'],
                 options: {
                     livereload: true
                 }
