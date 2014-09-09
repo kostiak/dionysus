@@ -1,71 +1,71 @@
-module.exports = function(app, passport) {
+var User = require('../app/model/user');
 
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
+module.exports = function (app, passport) {
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
+    /*
+    User.findOne({ 'email': 'a@a.a' }, function (err, user) {
+        console.log('looking');
+        console.log(user);
+    });
+
+    console.log(User.todos);
+    */
+
+    app.get('/api/test', function (req, res) {
+        if (req.isAuthenticated()){
+            var item = {
+                text: "hello world"
+            };
+            var query = {'_id': req.user._id};
+            var update = { $push: {todos: item} };
+            User.findOneAndUpdate(query, update, function (err, doc) {
+               if(err) {
+                   console.log('got an error');
+               } else {
+                   console.log(doc);
+               }
+
+            });
+            //req.user.todos.$push({'text': 'hello World'});
+        }
+        console.log('not auth');
+        res.end();
+    });
+
+    app.post('/api/todo', function (req, res) {
+        if (req.isAuthenticated()) {
+            var item = {
+                text: req.body.text
+            };
+            var query = {'_id': req.user._id};
+            var update = { $push: {todos: item} };
+            User.findOneAndUpdate(query, update, function (err) {
+                if(err) {
+                    console.log('got an error');
+                } else {
+                    res.end();
+                }
+            });
+        }
+    });
 
     app.post('/api/login',
         passport.authenticate('local-login'),
         function (req, res) {
             res.json(req.user);
-    });
-
+        });
     app.post('/api/register',
         passport.authenticate('local-signup'),
         function (req, res) {
             res.json(req.user);
-    });
+        });
 
-    app.get('/api/user', function(req, res){
+    app.get('/api/user', function (req, res) {
         res.json(req.user);
     });
 
-    app.get('/api/logout', function(req, res) {
+    app.get('/api/logout', function (req, res) {
         req.logout();
         res.end();
     });
-
-    // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-
-    // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
 };
-
-/*
-function middle(req, res, next){
-    return next();
-}
-*/

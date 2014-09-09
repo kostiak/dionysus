@@ -1,4 +1,10 @@
 <div>
-    <h1>Hello View 1</h1>
-    <p>{{ data.message }}</p>
+    <h1>Todo: </h1>
+    <ul ng-repeat="todo in user.todos">
+        <li>{{ todo.text }}</li>
+    </ul>
+    <form>
+        <input ng-model="formData.text" type="text"/>
+        <button type="submit" ng-click="submit()">Add</button>
+    </form>
 </div>

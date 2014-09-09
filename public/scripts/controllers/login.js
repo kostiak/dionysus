@@ -8,7 +8,7 @@ module.controller('LoginCtrl', ['$scope', '$location', 'User', function ($scope,
             function (err) {
                 $scope.err = err;
             }, function () {
-                $location.path('/profile');
+                $location.path('/');
             });
     };
 
