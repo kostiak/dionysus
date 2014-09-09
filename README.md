@@ -1,4 +1,4 @@
-#scotch-auth
+#dionysus
 
 To get started:
 
