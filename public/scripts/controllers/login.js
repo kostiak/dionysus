@@ -9,6 +9,13 @@ module.controller('LoginCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     };
 
+    $scope.logout = function () {
+        $http.get('/api/logout').success(function () {
+            $scope.data = {};
+            $scope.formData = {};
+        });
+    };
+
     $http.get('/api/user').success(function (data) {
         $scope.data = data;
     });

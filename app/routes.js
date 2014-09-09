@@ -19,6 +19,11 @@ module.exports = function(app, passport) {
         res.json(req.user);
     });
 
+    app.get('/api/logout', function(req, res) {
+        req.logout();
+        res.send('');
+    });
+
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
