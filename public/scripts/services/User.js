@@ -19,19 +19,31 @@ module.factory('User', ['$http', '$rootScope', function ($http, $rootScope) {
                 }
             });
         },
-        register: function (formData, callback) {
+        register: function (formData, errorCallback, successCallback) {
             $http.post('/api/register', formData).success(function (data) {
                 User.user = data;
-                if (typeof callback === 'function') {
-                    callback();
+                if (typeof successCallback === 'function') {
+                    successCallback();
+                }
+            }).error(function(data, status){
+                if(status == '400') {
+                    errorCallback('Email is in the wrong format');
+                } else if(status == '401') {
+                    errorCallback('Email already exists');
                 }
             });
         },
-        login: function (formData, callback) {
+        login: function (formData, errorCallback, successCallback) {
             $http.post('/api/login', formData).success(function (data) {
                 User.user = data;
-                if (typeof callback === 'function') {
-                    callback(data);
+                if (typeof successCallback === 'function') {
+                    successCallback(data);
+                }
+            }).error(function(data, status){
+                if(status == '400') {
+                    errorCallback('Email is in the wrong format');
+                } else if(status == '401') {
+                    errorCallback('Wrong email or password');
                 }
             });
         },

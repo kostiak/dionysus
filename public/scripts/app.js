@@ -16,8 +16,8 @@ var app = angular.module('scotchAuthApp', [
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/view1', {
-            templateUrl: 'partials/view1.html',
-            controller: 'View1Ctrl'
+            templateUrl: 'partials/main.html',
+            controller: 'MainViewCtrl'
         })
         .when('/login', {
             templateUrl: 'partials/login.html',

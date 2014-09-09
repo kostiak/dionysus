@@ -4,9 +4,12 @@ module.controller('LoginCtrl', ['$scope', '$location', 'User', function ($scope,
     $scope.formData = {};
 
     $scope.login = function () {
-        User.login($scope.formData, function () {
-            $location.path('/profile');
-        });
+        User.login($scope.formData,
+            function (err) {
+                $scope.err = err;
+            }, function () {
+                $location.path('/profile');
+            });
     };
 
     $scope.logout = function () {
