@@ -2,34 +2,12 @@ var User = require('../app/model/user');
 
 module.exports = function (app, passport) {
 
-    /*
-    User.findOne({ 'email': 'a@a.a' }, function (err, user) {
-        console.log('looking');
-        console.log(user);
-    });
-
-    console.log(User.todos);
-    */
-
-    app.get('/api/test', function (req, res) {
-        if (req.isAuthenticated()){
-            var item = {
-                text: "hello world"
-            };
-            var query = {'_id': req.user._id};
-            var update = { $push: {todos: item} };
-            User.findOneAndUpdate(query, update, function (err, doc) {
-               if(err) {
-                   console.log('got an error');
-               } else {
-                   console.log(doc);
-               }
-
-            });
-            //req.user.todos.$push({'text': 'hello World'});
+    app.get('/api/todo', function (req, res) {
+        if(req.isAuthenticated()){
+            res.json(req.user.todos);
+        } else {
+            res.json();
         }
-        console.log('not auth');
-        res.end();
     });
 
     app.post('/api/todo', function (req, res) {
@@ -39,11 +17,28 @@ module.exports = function (app, passport) {
             };
             var query = {'_id': req.user._id};
             var update = { $push: {todos: item} };
-            User.findOneAndUpdate(query, update, function (err) {
+            User.findOneAndUpdate(query, update, function (err, doc) {
                 if(err) {
                     console.log('got an error');
                 } else {
-                    res.end();
+                    res.json(doc.todos);
+                }
+            });
+        }
+    });
+
+    app.delete('/api/todo/:todo_id', function (req, res) {
+        if (req.isAuthenticated()) {
+            var item = {
+                text: req.body.text
+            };
+            var query = {'_id': req.user._id};
+            var update = { $pull: {todos: {'_id': req.params.todo_id }}};
+            User.findOneAndUpdate(query, update, function (err, doc) {
+                if(err) {
+                    console.log(err);
+                } else {
+                    res.json(doc.todos);
                 }
             });
         }
@@ -52,16 +47,31 @@ module.exports = function (app, passport) {
     app.post('/api/login',
         passport.authenticate('local-login'),
         function (req, res) {
-            res.json(req.user);
+            res.json({
+                email: req.user.email,
+                password: req.user.password
+            });
         });
     app.post('/api/register',
         passport.authenticate('local-signup'),
         function (req, res) {
-            res.json(req.user);
+            res.json({
+                email: req.user.email,
+                password: req.user.password
+            });
         });
 
     app.get('/api/user', function (req, res) {
-        res.json(req.user);
+        if(req.isAuthenticated())
+        {
+            res.json({
+                email: req.user.email,
+                password: req.user.password
+            });
+        }
+        else {
+            res.json();
+        }
     });
 
     app.get('/api/logout', function (req, res) {

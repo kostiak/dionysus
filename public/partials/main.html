@@ -1,7 +1,16 @@
-<div>
+<div ng-hide="loggedIn">
+    <h1>Welcome to the Dionysus</h1>
+    <h2>Todo WebApp</h2>
+
+    <p>To start using the app, please <a href="#/login">login</a>
+        or <a href="#/register">register</a>.</p>
+</div>
+
+
+<div ng-show="loggedIn">
     <h1>Todo: </h1>
-    <ul ng-repeat="todo in user.todos">
-        <li>{{ todo.text }}</li>
+    <ul ng-repeat="todo in todos">
+        <li>{{ todo.text }} | <a ng-click="delete(todo._id)">X</a></li>
     </ul>
     <form>
         <input ng-model="formData.text" type="text"/>

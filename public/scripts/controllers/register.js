@@ -8,7 +8,7 @@ module.controller('RegisterCtrl', ['$scope', '$location', 'User', function ($sco
                 $scope.err = err;
             },
             function () {
-                $location.path('/profile');
+                $location.path('/');
             });
     };
 
