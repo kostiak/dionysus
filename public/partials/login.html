@@ -1,11 +1,17 @@
-<div class="alert" ng-show="err">{{ err }}</div>
+<div class="forms">
+    <div class="tools-alert tools-alert-red" ng-show="err">{{ err }}</div>
 
-<form>
-    <label for="email">Email: </label>
-    <input type="email" id="email" ng-model="formData.email"/>
+    <form class="unit-75 unit-centered">
+        <label for="email">Email <span class="forms-desc">Please enter your email</span>
+            <input class="width-100" type="email" id="email" ng-model="formData.email"/>
+        </label>
 
-    <label for="password">Password: </label>
-    <input type="password" id="password" ng-model="formData.password"/>
+        <label for="password">Password <span class="forms-desc">Please enter your password</span>
+            <input class="width-100" type="password" id="password" ng-model="formData.password"/>
+        </label>
+        <p>
+            <button class="btn btn-blue width-100" ng-click="login()">Login</button>
+        </p>
 
-    <input type="submit" value="Login" ng-click="login()"/>
-</form>
+    </form>
+</div>

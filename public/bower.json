@@ -1,14 +1,14 @@
 {
-  "name": "dionysus",
-  "version": "0.1.0",
-  "author": "Kostia Kaploon <kkaploon@gmail.com>",
-  "description": "simple todo app with user authentication",
-  "private": true,
-  "dependencies": {
-    "angular": "~1.2.23",
-    "angular-route": "~1.2.23",
-    "angular-mocks": "~1.2.23",
-    "normalize.css": "~3.0.1",
-    "angular-gravatar": "~0.2.1"
-  }
+    "name": "dionysus",
+    "version": "0.1.1",
+    "author": "Kostia Kaploon <kkaploon@gmail.com>",
+    "description": "simple todo app with user authentication",
+    "private": true,
+    "dependencies": {
+        "angular": "~1.2.23",
+        "angular-route": "~1.2.23",
+        "angular-mocks": "~1.2.23",
+        "angular-gravatar": "~0.2.1",
+        "fontawesome": "~4.2.0"
+    }
 }

@@ -1,4 +1,4 @@
-<div ng-hide="loggedIn">
+<div ng-if="!loggedIn">
     <h1>Welcome to the Dionysus</h1>
     <h2>Todo WebApp</h2>
 
@@ -7,13 +7,16 @@
 </div>
 
 
-<div ng-show="loggedIn">
-    <h1>Todo: </h1>
-    <ul ng-repeat="todo in todos">
-        <li>{{ todo.text }} | <a ng-click="delete(todo._id)">X</a></li>
+<div class="todos" ng-if="loggedIn">
+    <h1>Todos: </h1>
+    <ul>
+        <li ng-repeat="todo in todos">
+            {{ todo.text }}
+            <a class="fa fa-trash right" ng-click="delete(todo._id)"></a>
+        </li>
     </ul>
     <form>
-        <input ng-model="formData.text" type="text"/>
-        <button type="submit" ng-click="submit()">Add</button>
+        <input class="width-75" ng-model="formData.text" type="text"/>
+        <button class="btn width-20" type="submit" ng-click="submit()">Add</button>
     </form>
 </div>
