@@ -2,11 +2,14 @@ var User = require('../app/model/user');
 
 module.exports = function (app, passport) {
 
+    // ### TO-DO API ###
+
     app.get('/api/todo', function (req, res) {
         if(req.isAuthenticated()){
             res.json(req.user.todos);
         } else {
-            res.json();
+            res.status(401);
+            res.send('User not authenticated');
         }
     });
 
@@ -24,14 +27,14 @@ module.exports = function (app, passport) {
                     res.json(doc.todos);
                 }
             });
+        } else {
+            res.status(401);
+            res.send('User not authenticated');
         }
     });
 
     app.delete('/api/todo/:todo_id', function (req, res) {
         if (req.isAuthenticated()) {
-            var item = {
-                text: req.body.text
-            };
             var query = {'_id': req.user._id};
             var update = { $pull: {todos: {'_id': req.params.todo_id }}};
             User.findOneAndUpdate(query, update, function (err, doc) {
@@ -41,8 +44,13 @@ module.exports = function (app, passport) {
                     res.json(doc.todos);
                 }
             });
+        } else {
+            res.status(401);
+            res.send('User not authenticated');
         }
     });
+
+    // ### USER API ###
 
     app.post('/api/login',
         passport.authenticate('local-login'),
@@ -77,5 +85,11 @@ module.exports = function (app, passport) {
     app.get('/api/logout', function (req, res) {
         req.logout();
         res.end();
+    });
+
+    // ### for anything that's not static or api, redirect ###
+
+    app.get('*', function(req, res){
+        res.redirect('/');
     });
 };

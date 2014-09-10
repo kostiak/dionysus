@@ -15,10 +15,11 @@
         <li ng-hide="loggedIn"><a href="#/login">login</a> /</li>
         <li ng-hide="loggedIn"><a href="#/register">register</a></li>
         <li ng-show="loggedIn">
-            <a class="profile" href="#/profile">
-                <img class="gravatar" gravatar-src="user.email" gravatar-size="30">
-                <span>{{ user.email }}</span>
-            </a>
+            <div class="profile">
+                <a href=""><img class="gravatar" gravatar-src="user.email" gravatar-size="30"></a>
+                <a href="#/profile">{{ user.email }}</a>
+                <a href='' ng-click="logout()">(logout)</a>
+            </div>
         </li>
     </ul>
 </nav>

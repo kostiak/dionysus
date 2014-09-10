@@ -47,7 +47,7 @@ nav li {
     display: table;
 }
 
-.profile img, .profile span {
+.profile a{
     padding-right: 5px;
     display: table-cell;
     vertical-align: middle;

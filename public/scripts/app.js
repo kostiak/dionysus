@@ -13,7 +13,7 @@ var app = angular.module('dionysusApp', [
 ]);
 
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
         .when('/view1', {
             templateUrl: 'partials/main.html',
@@ -32,4 +32,28 @@ app.config(['$routeProvider', function($routeProvider) {
         .otherwise({
             redirectTo: '/view1'
         });
+
+    var interceptor = ['$rootScope', '$q',function ($rootScope, $q) {
+        function success(response) {
+            return response;
+        }
+
+        function error(response) {
+            var status = response.status;
+            if (status == 401) {
+                if (window.location.hash !== "#/login" && window.location.hash != "#/register") {
+                    $rootScope.loggedIn = false;
+                    window.location = "/#/login";
+                    return({});
+                }
+            }
+            // otherwise
+            return $q.reject(response);
+        }
+
+        return function (promise) {
+            return promise.then(success, error);
+        };
+    }];
+    $httpProvider.responseInterceptors.push(interceptor);
 }]);
