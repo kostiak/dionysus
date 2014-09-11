@@ -1,6 +1,6 @@
 {
     "name": "dionysus",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "Kostia Kaploon <kkaploon@gmail.com>",
     "description": "simple todo app with user authentication",
     "private": true,

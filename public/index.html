@@ -6,9 +6,8 @@
     <title>Dionysus App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css"/>
-    <link rel="stylesheet" href="styles/kube.css"/>
-    <link rel="stylesheet" href="styles/main.css"/>
+    <link rel="stylesheet" href="styles/style.css">
+
 </head>
 <body>
 <header class="header units-row">
@@ -22,7 +21,6 @@
                 <a class="gravatar" href="#/profile">
                     <img gravatar-src="user.email" gravatar-size="30">{{ user.email }}
                 </a>
-
             </li>
             <li ng-if="loggedIn"><a href='' ng-click="logout()">logout</a></li>
         </ul>
@@ -36,27 +34,11 @@
     <div>Dionysus app: v<span app-version></span></div>
 </footer>
 
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-gravatar/build/md5.js"></script>
-<script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+<script src="scripts/vendor.min.js"></script>
 
-<!--grunt livereload script -->
-<script src="//localhost:35729/livereload.js"></script>
-<!--                        -->
+<script src="scripts/dist.min.js"></script>
 
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/login.js"></script>
-<script src="scripts/controllers/register.js"></script>
-<script src="scripts/controllers/profile.js"></script>
-<script src="scripts/directives/appVersion.js"></script>
-<script src="scripts/directives/passwordMatch.js"></script>
-<script src="scripts/filters/reverse.js"></script>
-<script src="scripts/services/version.js"></script>
-<script src="scripts/services/User.js"></script>
-<script src="scripts/services/Todo.js"></script>
+
 
 </body>
 </html>

@@ -2,7 +2,56 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            files: ['gruntfile.js', 'server.js', 'app/*.js', 'app/**/*.js', 'config/*.js', 'public/scripts/*.js', 'public/scripts/**/*.js']
+            files: ['gruntfile.js', 'server.js', 'server/*.js', 'server/**/*.js', 'config/*.js', 'src/scripts/*.js', 'src/scripts/**/*.js']
+        },
+        copy: {
+            html: {
+                src: 'src/index.html',
+                dest: 'public/index.html'
+            },
+            partials: {
+                expand: true,
+                cwd: 'src/partials/',
+                src: '**',
+                dest: 'public/partials/',
+                flatten: true,
+                filter: 'isFile'
+            },
+            fonts: {
+                expand: true,
+                cwd: 'src/bower_components/fontawesome/fonts/',
+                src: '**',
+                dest: 'public/fonts/',
+                flatten: true,
+                filter: 'isFile'
+            }
+        },
+        useminPrepare: {
+            html: 'src/index.html',
+            options: {
+                root: 'src',
+                dest: 'public',
+                flow: {
+                    steps: {
+                        clear: [],
+                        jsv: ['concat'],
+                        js: ['concat', 'uglifyjs'],
+                        css: ['concat', 'cssmin']
+
+                    },
+                    post: {}
+                }
+            }
+        },
+        usemin: {
+            html: 'public/index.html',
+            options: {
+                blockReplacements: {
+                    jsv: function (block) {
+                        return '<script src="' + block.dest + '"></script>';
+                    }
+                }
+            }
         },
         watch: {
             js: {
@@ -13,13 +62,13 @@ module.exports = function (grunt) {
                 }
             },
             html: {
-                files: ['public/index.html', 'public/partials/*.html'],
+                files: ['src/index.html', 'src/partials/*.html'],
                 options: {
                     livereload: true
                 }
             },
             css: {
-                files: ['public/styles/*.css'],
+                files: ['src/styles/*.css'],
                 options: {
                     livereload: true
                 }
@@ -27,17 +76,33 @@ module.exports = function (grunt) {
         },
         nodemon: {
             dev: {
-                script: 'server.js'
+                script: 'server.js',
+                options: {
+                    env: {
+                        PORT: '9000',
+                        DEV: 'true'
+                    }
+                }
             }
         },
         shell: {
             mongod: {
                 command: 'mongod --dbpath ./data'
+            },
+            server: {
+                command: 'node server.js'
             }
         },
         concurrent: {
             dev: {
-                tasks: ['shell', 'nodemon', 'watch'],
+                tasks: ['shell:mongod', 'nodemon:dev', 'watch'],
+                options: {
+                    logConcurrentOutput: true,
+                    limit: 4
+                }
+            },
+            dist: {
+                tasks: ['shell:mongod', 'shell:server'],
                 options: {
                     logConcurrentOutput: true,
                     limit: 4
@@ -47,10 +112,31 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('default', ['concurrent']);
+    grunt.loadNpmTasks('grunt-usemin');
+
+
+    grunt.registerTask('default', ['concurrent:dev']);
+    grunt.registerTask('server', ['concurrent:dist']);
+    grunt.registerTask('only-build', [
+        'copy:html',
+        'copy:partials',
+        'copy:fonts',
+        'useminPrepare',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
+        'usemin'
+    ]);
+    grunt.registerTask('build', ['only-build', 'server']);
+
 };
