@@ -56,16 +56,14 @@ module.exports = function (app, passport) {
         passport.authenticate('local-login'),
         function (req, res) {
             res.json({
-                email: req.user.email,
-                password: req.user.password
+                email: req.user.email
             });
         });
     app.post('/api/register',
         passport.authenticate('local-signup'),
         function (req, res) {
             res.json({
-                email: req.user.email,
-                password: req.user.password
+                email: req.user.email
             });
         });
 
@@ -73,8 +71,7 @@ module.exports = function (app, passport) {
         if(req.isAuthenticated())
         {
             res.json({
-                email: req.user.email,
-                password: req.user.password
+                email: req.user.email
             });
         }
         else {

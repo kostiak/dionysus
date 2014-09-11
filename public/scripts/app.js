@@ -15,7 +15,7 @@ var app = angular.module('dionysusApp', [
 
 app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
-        .when('/view1', {
+        .when('/', {
             templateUrl: 'partials/main.html',
             controller: 'MainViewCtrl'
         })
@@ -30,7 +30,7 @@ app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpPr
             controller: 'ProfileCtrl'
         })
         .otherwise({
-            redirectTo: '/view1'
+            redirectTo: '/'
         });
 
     var interceptor = ['$rootScope', '$q',function ($rootScope, $q) {
