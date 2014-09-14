@@ -11,10 +11,10 @@
     <h1>Todos: </h1>
     <ul>
         <li class="group" ng-repeat="todo in todos">
-            {{ todo.text }}
-            <a class="fa fa-trash right" ng-click="delete(todo._id)"></a>
+            <todo-item todo="todo" delete="delete"></todo-item>
         </li>
     </ul>
+
     <form id="addTodo">
         <input class="width-75" ng-model="formData.text" type="text"/>
         <button class="btn width-20" type="submit" ng-click="submit()">Add</button>
