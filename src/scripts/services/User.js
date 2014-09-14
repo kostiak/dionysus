@@ -17,7 +17,7 @@ angular.module('dionysusApp.services')
                 });
             },
             register: function (formData, errorCallback, successCallback) {
-                $http.post('/api/register', formData).success(function (data) {
+                $http.post('/api/user/register', formData).success(function (data) {
                     User.user = data;
                     if (data !== '') {
                         $rootScope.loggedIn = true;
@@ -34,7 +34,7 @@ angular.module('dionysusApp.services')
                 });
             },
             login: function (formData, errorCallback, successCallback) {
-                $http.post('/api/login', formData).success(function (data) {
+                $http.post('/api/user/login', formData).success(function (data) {
                     User.user = data;
                     if (data !== '') {
                         $rootScope.loggedIn = true;
@@ -51,7 +51,7 @@ angular.module('dionysusApp.services')
                 });
             },
             logout: function (callback) {
-                $http.get('/api/logout').success(function () {
+                $http.get('/api/user/logout').success(function () {
                     User.user = '';
                     $rootScope.loggedIn = false;
                     if (typeof callback === 'function') {
