@@ -1,5 +1,5 @@
 angular.module('dionysusApp.directives')
-    .directive('todoItem', ['$compile', function ($compile) {
+    .directive('todoItem', ['Todo', function (Todo) {
         return {
             restrict: 'E',
             replace: 'true',
@@ -8,23 +8,16 @@ angular.module('dionysusApp.directives')
                 delete: '='
             },
             templateUrl: '../../partials/todoItem.html',
-            link: function (scope, elem) {
+            link: function (scope) {
                 scope.editMode = false;
-                console.log(elem[0].children[0]);
 
                 scope.edit = function () {
+                    if(scope.editMode) {
+                        Todo.edit(scope.todo._id, scope.todo, function () {
+                            console.log('edited');
+                        });
+                    }
                     scope.editMode = !scope.editMode;
-                    /*
-                    console.log('edit');
-                    var inputHtml='<input type="text" value="'+ scope.todo.text +'"/>';
-                    var input = $compile(inputHtml)(scope);
-                    var buttonHtml='<button>OK</button>';
-                    var button = $compile(buttonHtml)(scope);
-                    //elem[0].children[0].replaceWith(e);
-                    angular.element(elem.children()[0]).replaceWith(input);
-                    angular.element(elem.children()[2]).replaceWith(button);
-                    //elem[0].replaceWith(e);
-                    */
                 };
             }
         };

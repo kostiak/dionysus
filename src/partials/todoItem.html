@@ -1,8 +1,8 @@
 <div>
-    <form ng-if="editMode">
-        <textarea ng-model="todo.text"></textarea>
-    </form>
-    <span ng-hide="editMode">{{ todo.text }}</span>
-    <a class="fa fa-trash right" ng-click="delete(todo._id)"></a>
-    <a class="fa fa-pencil right" ng-click="edit()"></a>
+
+    <textarea ng-if="editMode" ng-model="todo.text"></textarea>
+    <span class="todoText" ng-hide="editMode">{{ todo.text }}</span>
+    <a class="fa fa-trash right todoBtn" ng-hide="editMode" ng-click="delete(todo._id)"></a>
+    <a class="fa fa-pencil right todoBtn" ng-click="edit()"></a>
+
 </div>

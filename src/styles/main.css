@@ -19,6 +19,10 @@ header {
         float: right;
     }
 
+    .todoText {
+        display: block;
+    }
+
     .navbar li a {
         transform: scale(1.1, 1.1);
         text-align: center;
@@ -126,4 +130,12 @@ footer {
 
 .text-left {
     text-align: left;
+}
+
+.inline {
+    display: inline;
+}
+
+.todoBtn {
+    padding: 0 5px;
 }
