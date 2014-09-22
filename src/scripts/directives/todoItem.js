@@ -7,7 +7,7 @@ angular.module('dionysusApp.directives')
                 todo: '=',
                 delete: '='
             },
-            templateUrl: '../../partials/todoItem.html',
+            templateUrl: 'partials/todoItem.html',
             link: function (scope) {
                 scope.editMode = false;
 
