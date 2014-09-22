@@ -38,7 +38,18 @@ module.exports = function (grunt) {
                         js: ['concat', 'uglifyjs'],
                         css: ['concat', 'cssmin']
                     },
-                    post: {}
+                    post: {
+                        jsv: [{
+                            name: 'concat',
+                            createConfig: function (context, block) {
+                                var generated = context.options.generated;
+                                var arr = generated.files[1].src;
+                                for(var i=0; i<arr.length; i++){
+                                    arr[i] = arr[i].substring(0, arr[i].length - 2)+'min.js';
+                                }
+                            }
+                        }]
+                    }
                 }
             }
         },
