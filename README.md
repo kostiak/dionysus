@@ -43,3 +43,4 @@ The files will 'compile' and the database and server will start. By default it w
 
 * `grunt server` will start the public server
 * `grunt only-build` will 'compile' the files for the public server without starting the database or the server
+* `grunt test` to run karma tests without the rest of the default dev tasks (starting server, database, etc.)
