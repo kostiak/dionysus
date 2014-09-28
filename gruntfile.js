@@ -95,7 +95,7 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ['<%= jshint.src %>'],
-                tasks: ['jshint'],
+                tasks: ['jshint:src'],
                 options: {
                     livereload: true
                 }
@@ -114,7 +114,7 @@ module.exports = function (grunt) {
             },
             test: {
                 files: ['<%= jshint.test %>'],
-                tasks: ['jshint']
+                tasks: ['jshint:test']
             }
         },
         nodemon: {
@@ -148,6 +148,12 @@ module.exports = function (grunt) {
                     limit: 4
                 }
             },
+            test: {
+                tasks: ['shell:test', 'watch:test'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            },
             dist: {
                 tasks: ['shell:mongod', 'shell:server'],
                 options: {
@@ -173,7 +179,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-usemin');
 
-    grunt.registerTask('test', ['shell:test']);
+    grunt.registerTask('test', ['concurrent:test']);
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('server', ['concurrent:dist']);
     grunt.registerTask('only-build', [
