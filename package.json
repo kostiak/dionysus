@@ -31,6 +31,10 @@
     "grunt-filerev": "^0.2.1",
     "grunt-nodemon": "^0.3.0",
     "grunt-shell": "^1.1.1",
-    "grunt-usemin": "^2.4.0"
+    "grunt-usemin": "^2.4.0",
+    "karma": "^0.12.23",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-coverage": "^0.2.6",
+    "karma-jasmine": "^0.1.5"
   }
 }

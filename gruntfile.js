@@ -2,7 +2,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            files: ['gruntfile.js', 'server.js', 'server/*.js', 'server/**/*.js', 'config/*.js', 'src/scripts/*.js', 'src/scripts/**/*.js']
+            src: [
+                'gruntfile.js',
+                'server.js',
+                'server/*.js',
+                'server/**/*.js',
+                'config/*.js',
+                'src/scripts/*.js',
+                'src/scripts/**/*.js'
+            ],
+            test: ['test/**/*.js']
         },
         copy: {
             html: {
@@ -85,7 +94,7 @@ module.exports = function (grunt) {
         },
         watch: {
             js: {
-                files: ['<%= jshint.files %>'],
+                files: ['<%= jshint.src %>'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true
@@ -102,6 +111,10 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            test: {
+                files: ['<%= jshint.test %>'],
+                tasks: ['jshint']
             }
         },
         nodemon: {
@@ -111,7 +124,8 @@ module.exports = function (grunt) {
                     env: {
                         PORT: '9000',
                         DEV: 'true'
-                    }
+                    },
+                    ignore: ['test/', 'coverage/']
                 }
             }
         },
@@ -121,11 +135,14 @@ module.exports = function (grunt) {
             },
             server: {
                 command: 'node server.js'
+            },
+            test: {
+                command: 'karma start'
             }
         },
         concurrent: {
             dev: {
-                tasks: ['shell:mongod', 'nodemon:dev', 'watch'],
+                tasks: ['shell:mongod', 'nodemon:dev', 'watch', 'shell:test'],
                 options: {
                     logConcurrentOutput: true,
                     limit: 4
@@ -156,7 +173,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-usemin');
 
-
+    grunt.registerTask('test', ['shell:test']);
     grunt.registerTask('default', ['concurrent:dev']);
     grunt.registerTask('server', ['concurrent:dist']);
     grunt.registerTask('only-build', [
