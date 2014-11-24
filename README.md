@@ -4,6 +4,9 @@
 
 ***
 
+I wrote this application while learning the Mongodb, Express, Angularjs, Node.js Stack. The application has user management and each user has a To-Do list in which he can add, edit and remove items.
+
+***
 ### Before you get started, make sure: ###
 
 * Node.js is installed.   
@@ -18,12 +21,16 @@ To test, run `mongod --version`
 * MongoDB is not running as a service (it does by default)  
 To stop it, run `sudo service mongod stop`
 
+* grunt and karma are installed globally
+To test, make sure `grunt` and `karma` are recognized commands.
+If they are not, install by running `npm install -g grunt-cli` and `npm install -g karma-cli`.
+
 ### To get started: ###
 
 * in `\` run `npm install`  
 If you get errors, try `sudo npm install`
 
-* in `\public` run `bower install`
+* in `\src` run `bower install`
 
 ***
 
