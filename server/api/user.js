@@ -1,6 +1,3 @@
-/**
- * Created by kost on 14/09/14.
- */
 var User = require('../model/user');
 
 module.exports = function (app, passport) {

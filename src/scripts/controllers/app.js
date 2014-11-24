@@ -5,7 +5,6 @@ angular.module('dionysusApp.controllers')
             return User.user;
         }, function (data) {
             $scope.user = data;
-            //console.log('User.user changed, ' + data.email);
         });
 
         $scope.logout = function () {

@@ -5,44 +5,6 @@ header {
     line-height: 80px;
 }
 
-@media only screen and (max-width: 767px) {
-
-    header {
-        height: 200px;
-    }
-
-    .todos ul li {
-        font-size: 200%;
-    }
-
-    .todos ul li a {
-        float: right;
-    }
-
-    .todoText {
-        display: block;
-    }
-
-    .navbar li a {
-        transform: scale(1.1, 1.1);
-        text-align: center;
-        margin: 10px 0;
-        padding: 5px;
-        background: #e6e6e6;
-        border-radius: 5px;
-    }
-
-    .btn {
-        padding: 0;
-    }
-
-}
-
-#addTodo input {
-    border-color: #cccccc;
-    box-shadow: none;
-}
-
 .header {
     margin-bottom: 0;
     vertical-align: middle;
@@ -103,6 +65,11 @@ footer {
     cursor: pointer;
 }
 
+#addTodo input {
+    border-color: #cccccc;
+    box-shadow: none;
+}
+
 .todos ul {
     margin: 0;
 }
@@ -138,4 +105,37 @@ footer {
 
 .todoBtn {
     padding: 0 5px;
+}
+
+@media only screen and (max-width: 767px) {
+
+    header {
+        height: 200px;
+    }
+
+    .todos ul li {
+        font-size: 200%;
+    }
+
+    .todos ul li a {
+        float: right;
+    }
+
+    .todoText {
+        display: block;
+    }
+
+    .navbar li a {
+        transform: scale(1.1, 1.1);
+        text-align: center;
+        margin: 10px 0;
+        padding: 5px;
+        background: #e6e6e6;
+        border-radius: 5px;
+    }
+
+    .btn {
+        padding: 0;
+    }
+
 }

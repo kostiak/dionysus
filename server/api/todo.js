@@ -21,7 +21,7 @@ module.exports = function (app) {
             var update = { $push: {todos: item} };
             User.findOneAndUpdate(query, update, function (err, doc) {
                 if (err) {
-                    console.log('got an error');
+                    console.log('Error in /api/todo: ', err);
                 } else {
                     res.json(doc.todos);
                 }
@@ -38,7 +38,7 @@ module.exports = function (app) {
             var update = { $set: {"todos.$.text": req.body.text}};
             User.findOneAndUpdate(query, update, function (err, doc) {
                 if (err) {
-                    console.log('got an error');
+                    console.log('Error in post /api/todo/todo_id: ', err);
                 } else {
                     res.json(doc.todos);
                 }
@@ -55,7 +55,7 @@ module.exports = function (app) {
             var update = { $pull: {todos: {'_id': req.params.todo_id }}};
             User.findOneAndUpdate(query, update, function (err, doc) {
                 if (err) {
-                    console.log(err);
+                    console.log('Error in delete /api/todo/todo_id: ', err);
                 } else {
                     res.json(doc.todos);
                 }

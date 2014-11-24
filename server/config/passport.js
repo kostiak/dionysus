@@ -53,7 +53,7 @@ module.exports = function (passport) {
                     // check to see if theres already a user with that email
                     if (user) {
                         console.log('user already exists');
-                        return done(null, false); //TODO add notification to angular
+                        return done(null, false);
                     } else {
 
                         // if there is no user with that email
@@ -67,7 +67,7 @@ module.exports = function (passport) {
                         // save the user
                         newUser.save(function (err) {
                             if (err)
-                                throw err;
+                                return done(err);
                             return done(null, newUser);
                         });
                     }
@@ -100,13 +100,13 @@ module.exports = function (passport) {
 
                 // if no user is found, return the message
                 if (!user) {
-                    console.log('no user found'); //TODO return data to the app
+                    console.log('no user found');
                     return done(null, false);
                 }
 
                 // if the user is found but the password is wrong
                 if (!user.validPassword(password)) {
-                    console.log('wrong password'); //TODO return data to the app
+                    console.log('wrong password');
                     return done(null, false);
                 }
 
