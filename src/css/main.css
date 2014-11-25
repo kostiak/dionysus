@@ -115,6 +115,7 @@ footer {
 
     .todos ul li {
         font-size: 200%;
+        margin: 10px;
     }
 
     .todos ul li a {
