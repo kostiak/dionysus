@@ -8,8 +8,8 @@ module.exports = function (grunt) {
                 'server/*.js',
                 'server/**/*.js',
                 'config/*.js',
-                'src/scripts/*.js',
-                'src/scripts/**/*.js'
+                'src/js/*.js',
+                'src/js/**/*.js'
             ],
             test: ['test/**/*.js']
         },
@@ -78,7 +78,7 @@ module.exports = function (grunt) {
                         removeScriptTypeAttributes:     true,
                         removeStyleLinkTypeAttributes:  true
                     },
-                    usemin: 'scripts/dist.min.js'
+                    usemin: 'js/dist.min.js'
                 }
             }
         },
@@ -107,7 +107,7 @@ module.exports = function (grunt) {
                 }
             },
             css: {
-                files: ['src/styles/*.css'],
+                files: ['src/css/*.css'],
                 options: {
                     livereload: true
                 }
