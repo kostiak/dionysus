@@ -6,7 +6,15 @@
 
 I wrote this application while learning the Mongodb, Express, Angularjs, Node.js Stack. The application has user management and each user has a To-Do list in which he can add, edit and remove items.
 
+#[Demo](https://dionysus-mean.herokuapp.com/)#
+
+You can use the demo user:
+
+email: demo@example.com     
+password: Demo12 (capital D, case sensitive)
+
 ***
+
 ### Before you get started, make sure: ###
 
 * Node.js is installed.   
